@@ -1,12 +1,20 @@
+import 'dart:math';
+
 import 'package:console_shoppingmaill/character.dart';
 
 class Monster {
   String name;
   int hp;
-  int ramdomAttackRange; // 몬스터의 공격력은 캐릭터의 방어력보다 작을 수 없습니다. 랜덤으로 지정하여 캐릭터의 방어력과 랜덤 값 중 최대값으로 설정해주세요.
+  int maxAttack;
+  int ramdomAttackRange = 0;
   int defense = 0;
 
-  Monster({required this.name, required this.hp, required this.ramdomAttackRange, required this.defense});  
+  Monster({required this.name, required this.hp, required this.maxAttack});  
+
+  // 몬스터의 공격력은 캐릭터의 방어력보다 작을 수 없습니다. 랜덤으로 지정하여 캐릭터의 방어력과 랜덤 값 중 최대값으로 설정해주세요.
+  void setAttackRange() {
+    ramdomAttackRange = Random().nextInt(maxAttack);
+  }
 
   void attackCharacter(Character character) {
 //         - 캐릭터에게 공격을 가하여 피해를 입힙니다.

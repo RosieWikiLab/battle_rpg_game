@@ -16,7 +16,6 @@ void main() {
   while(true) {
     print('캐릭터의 이름을 입력하세요: ');
     characterName = stdin.readLineSync() ?? '';
-    print(characterName);
     RegExp regExp = RegExp(r'^[a-zA-Z가-힣]+$');
     if(!regExp.hasMatch(characterName)){
       print('캐릭터 이름은 한글 또는 영문으로만 입력해주세요.');
@@ -28,7 +27,7 @@ void main() {
   // 초기 몬스터 세팅
   int ramdomMonterIdx = Random().nextInt(monsterFile.readAsLinesSync().length);
   var monsterInfo = monsterFile.readAsLinesSync()[ramdomMonterIdx].split(',');
-  var monster = Monster(name: monsterInfo[0], hp: int.parse(monsterInfo[0]), maxAttack: int.parse(monsterInfo[1]));
+  var monster = Monster(name: monsterInfo[0], hp: int.parse(monsterInfo[1]), maxAttack: int.parse(monsterInfo[2]));
   monster.setAttackRange();
 
   // 초기 캐릭터 세팅
@@ -37,5 +36,6 @@ void main() {
 
   // 게임 시작
   print('게임을 시작합니다!');
-
+  print('${characterName} - 체력: ${character.hp}, 공격력: ${character.attack}, 방어력: ${character.defense}');
+  
 }
