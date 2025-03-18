@@ -1,4 +1,6 @@
-import 'package:console_shoppingmaill/monster.dart';
+import 'dart:math';
+
+import 'package:battle_rpg_game/monster.dart';
 
 class Character {
   String name;
@@ -8,16 +10,18 @@ class Character {
 
   Character({required this.name, required this.hp, required this.attack, required this.defense});  
 
-  void attackMonster(Monster monster) {
+  Monster attackMonster(Monster monster) {
     monster.hp -= attack;
+    int damage = monster.hp < attack ? monster.hp : attack;
+    print('$name이(가) ${monster.name}에게 $damage의 데미지를 입혔습니다.');
+    return monster;
   }
 
   void defend() {
-    // 특정 행동 수행
-    // 예) 대결 상대인 몬스터가 입힌 데미지만큼 캐릭터의 체력을 상승시킵니다.
+    // print('$name이(가) 방어 태세를 취하여 $attack 만큼 체력을 얻었습니다.');
   }
 
   void showStatus() {
-    // 캐릭터의 현재 체력, 공격력, 방어력을 매 턴마다 출력합니다.
+    print('$name - 체력: $hp, 공격력: $attack, 방어력: $defense');
   }
 }

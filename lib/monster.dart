@@ -1,27 +1,29 @@
 import 'dart:math';
 
-import 'package:console_shoppingmaill/character.dart';
+import 'package:battle_rpg_game/character.dart';
 
 class Monster {
   String name;
   int hp;
   int maxAttack;
-  int ramdomAttackRange = 0;
+  int randomAttack = 0;
   int defense = 0;
 
   Monster({required this.name, required this.hp, required this.maxAttack});  
 
-  // 몬스터의 공격력은 캐릭터의 방어력보다 작을 수 없습니다. 랜덤으로 지정하여 캐릭터의 방어력과 랜덤 값 중 최대값으로 설정해주세요.
-  void setAttackRange() {
-    ramdomAttackRange = Random().nextInt(maxAttack);
+  void setRandomAttack() {
+    randomAttack = Random().nextInt(maxAttack);
   }
 
-  void attackCharacter(Character character) {
-//         - 캐릭터에게 공격을 가하여 피해를 입힙니다.
-//         - 캐릭터에게 입히는 데미지는 몬스터의 공격력에서 캐릭터의 방어력을 뺀 값이며, 최소 데미지는 0 이상입니다.
+  Character attackCharacter(Character character) {
+    character.hp -= randomAttack;
+    int realAttack = randomAttack - character.defense;
+    // int damage = character.hp < realAttack ? character.hp : realAttack;
+    print('$name이(가) ${character.name}에게 ${character.attack}의 데미지를 입혔습니다.');
+    return character;
   }
 
   void showStatus() {
-//         - 몬스터의 현재 체력과 공격력을 매 턴마다 출력합니다.
+    print('$name - 체력: $hp, 공격력: $randomAttack, 방어력: $defense');
   }
 }
