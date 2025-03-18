@@ -44,12 +44,14 @@ class Game {
 
   void battle(Monster monster) {
     do {
+      bool defenseUsed = false;
+
       print('${character.name} 턴');
       print('행동을 선택하세요 (1: 공격, 2: 방어, 3: 공격력 두 배): ');
       if(stdin.readLineSync() == '1') { 
         character.attackMonster(monster); 
       } else if (stdin.readLineSync() == '2') { 
-        character.defend();
+        defenseUsed = true;
       } else {  
         if(!character.itemUsed) { character.doubleAttack(); }
       }
@@ -62,10 +64,16 @@ class Game {
         monster.defenseCounter = 0; 
         monster.defense = 0; 
       }
-      monster.attackCharacter(character);
+
+      if(defenseUsed) { 
+        character.hp += monster.randomAttack; 
+        character.defend(monster.randomAttack);
+      } else { monster.attackCharacter(character); }
+      
       character.showStatus();
       monster.showStatus();
       print('');
+
     } while (monster.hp > 0 && character.hp > 0);
     
     if(monster.hp <= 0) {

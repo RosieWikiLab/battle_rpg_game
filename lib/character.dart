@@ -18,8 +18,8 @@ class Character {
     return monster;
   }
 
-  void defend() {
-    // print('$name이(가) 방어 태세를 취하여 $attack 만큼 체력을 얻었습니다.');
+  void defend(int defensePoint) {
+    print('$name이(가) 방어 태세를 취하여 $defensePoint 만큼 체력을 얻었습니다.');
   }
 
   void showStatus() {
