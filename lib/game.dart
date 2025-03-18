@@ -11,6 +11,8 @@ class Game {
   Game({required this.character, required this.monsters});  
 
   bool startGame() {
+    character.bonusHealth();  
+    
     print('게임을 시작합니다!');
     character.showStatus();
     print('');

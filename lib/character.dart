@@ -24,4 +24,12 @@ class Character {
   void showStatus() {
     print('$name - 체력: $hp, 공격력: $attack, 방어력: $defense');
   }
+  
+  // 도전1 - 캐릭터의 체력 증가 기능 추가
+  void bonusHealth(){
+    if(Random().nextDouble() <= 0.3) {
+      hp += 10;
+      print('보너스 체력을 얻었습니다! 현재 체력: ${hp}');
+    }
+  }
 }
