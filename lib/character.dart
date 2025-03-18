@@ -7,9 +7,10 @@ class Character {
   int hp;
   int attack;
   int defense;
+  int maxHp;
   bool itemUsed = false;
 
-  Character({required this.name, required this.hp, required this.attack, required this.defense});  
+  Character({required this.name, required this.hp, required this.attack, required this.defense, required this.maxHp});  
 
   Monster attackMonster(Monster monster) {
     int damage = attack <= monster.defense ? 0 : attack - monster.defense;

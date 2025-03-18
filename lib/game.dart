@@ -48,12 +48,18 @@ class Game {
 
       print('${character.name} 턴');
       print('행동을 선택하세요 (1: 공격, 2: 방어, 3: 공격력 두 배): ');
-      if(stdin.readLineSync() == '1') { 
-        character.attackMonster(monster); 
-      } else if (stdin.readLineSync() == '2') { 
-        defenseUsed = true;
-      } else {  
-        if(!character.itemUsed) { character.doubleAttack(); }
+      switch (stdin.readLineSync()) {
+        case '1' :
+          character.attackMonster(monster);
+          break;
+        case '2' :
+          defenseUsed = true;
+          break;
+        default :
+          if (!character.itemUsed) {
+            character.doubleAttack();
+          }
+          break;
       }
       print('');
       
@@ -80,7 +86,12 @@ class Game {
       monsters.remove(monster);
       print('${monster.name}을(를) 물리쳤습니다!');
       print('');
-      character.attack ~/= 2;
+      if (!character.itemUsed) { character.attack ~/= 2; }
+
+      // 도전4 - 몬스터 처치 시 캐릭터 레벨업 및 체력회복
+      character.attack *= 2;
+      character.defense *= 2;
+      character.hp = character.maxHp;
     }
   }
 

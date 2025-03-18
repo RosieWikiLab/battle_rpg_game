@@ -46,7 +46,13 @@ String inputCharacterName() {
 
 Character setCharacter(File characterFile, String characterName) {
   var characterInfo = characterFile.readAsLinesSync()[0].split(',');
-  var character = Character(name: characterName, hp: int.parse(characterInfo[0]), attack: int.parse(characterInfo[1]), defense: int.parse(characterInfo[2]));
+  var character = Character(
+                    name: characterName, 
+                    hp: int.parse(characterInfo[0]), 
+                    attack: int.parse(characterInfo[1]), 
+                    defense: int.parse(characterInfo[2]), 
+                    maxHp: int.parse(characterInfo[0])
+                  );
   return character;
 }
 
