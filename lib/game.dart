@@ -12,7 +12,7 @@ class Game {
 
   bool startGame() {
     character.bonusHealth();  
-    
+
     print('게임을 시작합니다!');
     character.showStatus();
     print('');
@@ -45,9 +45,14 @@ class Game {
   void battle(Monster monster) {
     do {
       print('${character.name} 턴');
-      print('행동을 선택하세요 (1: 공격, 2: 방어): ');
-      if(stdin.readLineSync() == '1') { character.attackMonster(monster); }
-      else { character.defend(); }
+      print('행동을 선택하세요 (1: 공격, 2: 방어, 3: 공격력 두 배): ');
+      if(stdin.readLineSync() == '1') { 
+        character.attackMonster(monster); 
+      } else if (stdin.readLineSync() == '2') { 
+        character.defend();
+      } else {  
+        if(!character.itemUsed) { character.doubleAttack(); }
+      }
       print('');
       
       print('${monster.name} 턴');
@@ -61,6 +66,7 @@ class Game {
       monsters.remove(monster);
       print('${monster.name}을(를) 물리쳤습니다!');
       print('');
+      character.attack ~/= 2;
     }
   }
 

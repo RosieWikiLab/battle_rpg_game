@@ -7,12 +7,13 @@ class Character {
   int hp;
   int attack;
   int defense;
+  bool itemUsed = false;
 
   Character({required this.name, required this.hp, required this.attack, required this.defense});  
 
   Monster attackMonster(Monster monster) {
-    monster.hp -= attack;
-    int damage = monster.hp < attack ? monster.hp : attack;
+    int damage = attack - monster.defense;
+    monster.hp -= damage;
     print('$name이(가) ${monster.name}에게 $damage의 데미지를 입혔습니다.');
     return monster;
   }
@@ -31,5 +32,11 @@ class Character {
       hp += 10;
       print('보너스 체력을 얻었습니다! 현재 체력: ${hp}');
     }
+  }
+
+  // 도전2 - 한 턴 아이템 사용 기능 추가
+  void doubleAttack() { 
+    itemUsed = true; 
+    attack *= 2;
   }
 }

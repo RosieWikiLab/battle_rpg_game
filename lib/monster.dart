@@ -16,10 +16,9 @@ class Monster {
   }
 
   Character attackCharacter(Character character) {
-    character.hp -= randomAttack;
-    int realAttack = randomAttack - character.defense;
-    // int damage = character.hp < realAttack ? character.hp : realAttack;
-    print('$name이(가) ${character.name}에게 ${character.attack}의 데미지를 입혔습니다.');
+    int damage = randomAttack - character.defense;
+    character.hp -= damage;
+    print('$name이(가) ${character.name}에게 $damage의 데미지를 입혔습니다.');
     return character;
   }
 
