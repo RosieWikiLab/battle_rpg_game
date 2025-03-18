@@ -22,7 +22,7 @@ class Game {
     do{
       if(monsters.length != monsterCount) {
         print('다음 몬스터와 대결하시겠습니까? (y/n): ');
-        if(stdin.readLineSync() == 'n') { break; }
+        if(stdin.readLineSync() != 'y') { break; }
       } 
 
       Monster monster = getRandomMonster();
@@ -55,7 +55,13 @@ class Game {
       }
       print('');
       
+      // 도전3 - 몬스터의 방어력 증가 기능 추가
       print('${monster.name} 턴');
+      monster.defenseCounter++;
+      if(monster.defenseCounter == 3) { 
+        monster.defenseCounter = 0; 
+        monster.defense = 0; 
+      }
       monster.attackCharacter(character);
       character.showStatus();
       monster.showStatus();

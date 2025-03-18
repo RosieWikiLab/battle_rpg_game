@@ -12,7 +12,7 @@ class Character {
   Character({required this.name, required this.hp, required this.attack, required this.defense});  
 
   Monster attackMonster(Monster monster) {
-    int damage = attack - monster.defense;
+    int damage = attack <= monster.defense ? 0 : attack - monster.defense;
     monster.hp -= damage;
     print('$name이(가) ${monster.name}에게 $damage의 데미지를 입혔습니다.');
     return monster;
