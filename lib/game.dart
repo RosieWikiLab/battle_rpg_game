@@ -55,10 +55,13 @@ class Game {
         case '2' :
           defenseUsed = true;
           break;
-        default :
+        case '3' :
           if (!character.itemUsed) {
             character.doubleAttack();
+            character.attackMonster(monster);
           }
+          break;
+        default : // 잘못된 값 입력시 그냥 넘어감
           break;
       }
       print('');
